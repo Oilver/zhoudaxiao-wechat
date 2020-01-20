@@ -1,0 +1,8 @@
+/* pages/recommend/recommend.wxss */
+
+.top-container {
+  height: 1300rpx;
+}
+.test-text{
+    height:2000rpx
+}

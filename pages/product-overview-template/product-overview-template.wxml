@@ -1,0 +1,3 @@
+<template name="productOverviewTemplate">
+    <text>{{name}}</text>
+</template>

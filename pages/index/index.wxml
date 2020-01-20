@@ -1,0 +1,38 @@
+<import src="product-template/product-template.wxml"/>
+<view>
+    <view>
+        <swiper indicator-dots="true" autoplay="true" indicator-active-color="red">
+            <block wx:for="{{carouselsList}}" wx:key="key">
+                <swiper-item>
+                    <image src="{{item.url}}"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class="index-boutique">
+        <view>
+            <text class="boutique1-font">今日推荐</text>
+            <text catchtap="onRecommendTap" data-type="today">更多</text>
+        </view>
+        <block wx:for="{{todayProductList}}" wx:key="key">``
+            <!--//template-->
+            <view catchtap="onDetailTap" data-id="{{item.id}}">
+                <template is="product-template" data="{{...item}}"/>
+            </view>
+        </block>
+
+    </view>
+    <view class="index-boutique">
+        <view>
+            <text class="boutique1-font">爆款推荐</text>
+            <text catchtap="onRecommendTap" data-type="hot">更多</text>
+        </view>
+        <block wx:for="{{hotProductList}}" wx:key="key">
+            <!--//template-->
+            <view catchtap="onDetailTap" data-id="{{item.id}}">
+                <template is="product-template" data="{{...item}}"/>
+            </view>
+        </block>
+    </view>
+</view>

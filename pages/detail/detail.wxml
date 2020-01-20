@@ -1,0 +1,9 @@
+<!--pages/detail/detail.wxml-->
+<text>{{productDetail.name}}</text>
+
+<image src="{{productDetail.avatarUrl}}"></image>
+
+<!--所有图片-->
+<block wx:for="{{productDetail.imageEntityList}}" wx:key>
+    <image src="{{item.url}}"></image>
+</block>
