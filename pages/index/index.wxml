@@ -10,7 +10,7 @@
         </swiper>
     </view>
 
-    <view class="index-boutique">
+    <view>
         <view>
             <text class="boutique1-font">今日推荐</text>
             <text catchtap="onRecommendTap" data-type="today">更多</text>
@@ -21,9 +21,9 @@
                 <template is="product-template" data="{{...item}}"/>
             </view>
         </block>
-
     </view>
-    <view class="index-boutique">
+
+    <view>
         <view>
             <text class="boutique1-font">爆款推荐</text>
             <text catchtap="onRecommendTap" data-type="hot">更多</text>

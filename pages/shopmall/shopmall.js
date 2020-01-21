@@ -1,6 +1,5 @@
 //logs.js
 var httpClient = require("../../utils/request.js")
-var app = getApp();
 
 Page({
     data: {
@@ -8,7 +7,6 @@ Page({
         currentTab: null,
         categoryId: null,
         productList: [],
-        topName: null
     },
 
     /**
@@ -34,7 +32,6 @@ Page({
         this.setData({
             productList: result.data.list,
         })
-
     },
 
     queryProductListFail() {
@@ -43,8 +40,7 @@ Page({
 
     queryProductListByCategoryId() {
         let param = {
-            categoryId: this.data.categoryId,
-            queryType: app.globalData.BY_CATEGORY
+            categoryId: this.data.categoryId
         }
         httpClient.request('product/queryProductList', param, this.queryProductListSuc, this.queryProductListFail);
     },
@@ -57,7 +53,7 @@ Page({
         this.data.categoryId = this.data.categoryList[this.data.currentTab].id
         this.queryProductListByCategoryId()
     },
-    onSearch(event){
+    onSearch(event) {
         wx.navigateTo({
             url: "../search/search"
         })

@@ -1,10 +1,5 @@
 var app = getApp();
 
-//第一点要知道后端要的是Get 还是 Post请求，如果是Get请求，就调用getData
-//如果是post，就调用request
-//postData如果不需要就传null，如果需要就传json体
-//比如 {id: 11 ,name: 'name'}
-
 /**
  * POST请求，
  * URL：接口

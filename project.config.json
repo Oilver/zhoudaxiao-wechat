@@ -7,10 +7,13 @@
 		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
@@ -22,7 +25,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
-	"appid": "wx99ec32a9983f9772",
+	"appid": "wx8d22f4eedf93de03",
 	"projectname": "Shopping%20Walker2",
 	"debugOptions": {
 		"hidedInDevtools": []

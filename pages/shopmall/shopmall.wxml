@@ -1,10 +1,9 @@
-
 <import src="../productList-template/productList-template.wxml"/>
 
 <!--搜索框 -->
 <view class="search-bar">
     <view catchtap="onSearch">搜索</view>
- </view>
+</view>
 
 
 <view class="navbar">

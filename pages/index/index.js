@@ -1,5 +1,4 @@
 //引入代码
-var app = getApp();
 var httpClient = require("../../utils/request.js")
 
 Page({
@@ -67,7 +66,6 @@ Page({
     /**
      * 跳转到今日推荐或者爆款推荐
      */
-    //todo 换成eventChannel方式传递数据
     onRecommendTap(event) {
         var topName = event.currentTarget.dataset.type;
         wx.navigateTo({
@@ -79,11 +77,9 @@ Page({
     },
 
     /**
-     * 调用刷新函数
+     * 下拉刷新
      */
-
     onPullDownRefresh: function () {
-
         // 显示顶部刷新图标
         wx.showNavigationBarLoading();
 
@@ -98,5 +94,4 @@ Page({
         // 停止下拉动作
         wx.stopPullDownRefresh();
     }
-
 })

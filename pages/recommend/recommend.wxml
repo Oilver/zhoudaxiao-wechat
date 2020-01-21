@@ -4,16 +4,9 @@
 <!--搜索框 -->
 <view class="search-bar">
     <view catchtap="onSearch">搜索</view>
- </view>
+</view>
 
 
 <scroll-view scroll-x="false" scroll-y="true" bindscrolltolower="onReachBottom" class="top-container">
-<template is="productListTemplate" data="{{topProductList}}"/>
-<view class="test-text">
-<text>
-1.打开“微信”，点击“设置”，点击“通用”。
-2.点击“微信存储空间”，点击“管理微信存储空间”。点击“管理当前微信帐号聊天数据”。
-3.选择联系人，点击“删除”就清理成功了。
-</text>
-</view>
+    <template is="productListTemplate" data="{{topProductList}}"/>
 </scroll-view>
