@@ -1,0 +1,9 @@
+.backgroud {
+  width: 100%;
+  height: 1388rpx;
+}
+
+.backgroud image {
+  width: 100%;
+  height: 100%;
+}
