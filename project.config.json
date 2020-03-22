@@ -4,13 +4,15 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
@@ -22,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
-	"appid": "wx99ec32a9983f9772",
+	"appid": "wxc26f6927b3ecd645",
 	"projectname": "Shopping%20Walker2",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -39,13 +41,36 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/detail/detail",
+					"pathName": "pages/detail/detail",
+					"query": "cat=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/shopcart/shopcart",
+					"pathName": "pages/shopcart/shopcart",
+					"query": "",
+					"scene": null
+				}
+			]
 		}
 	}
 }

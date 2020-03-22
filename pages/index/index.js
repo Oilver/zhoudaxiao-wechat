@@ -7,9 +7,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        carouselsList: [],
-        todayProductList: [],
-        hotProductList: []
+      carouselsList: [],
+      todayProductList: [],
+      hotProductList: [],
+      background: ['demo-1', 'demo-2', 'demo-3'],
     },
 
     /**
@@ -97,6 +98,18 @@ Page({
         wx.hideNavigationBarLoading();
         // 停止下拉动作
         wx.stopPullDownRefresh();
-    }
+    },
+
+    onSearch: function() {
+      wx.navigateTo({
+        url: "../search/search"
+      })
+    },
+
+  onClickTabs: function(event) {
+    console.log(event.detail);
+    console.log(event.detail.index);
+  }
+
 
 })

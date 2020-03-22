@@ -9,7 +9,8 @@ Page({
   data: {
     inputVal:'',
     searchName:'',
-    SearchProductList:''
+    SearchProductList:'',
+    isShowTap: true
   },
 
   showInput: function () {
@@ -64,5 +65,23 @@ Page({
   },
   searchProductListFail() {
     console.log("失败")
+  },
+  setSearchItem(e) {
+    var value = e.currentTarget.dataset.name;
+    this.setData({
+      inputVal: value,
+      isShowTap: false
+    });
+  },
+  onChange(e) {
+    this.setData({
+      inputVal: e.detail
+    });
+    if (e.detail == "") {
+      this.setData({
+        isShowTap: true
+      })
+    }
   }
+
 })

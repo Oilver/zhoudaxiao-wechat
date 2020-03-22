@@ -1,0 +1,7 @@
+.van-submit-bar van-button{
+  width: 184px
+}
+
+.shopcart {
+  height: calc(100vh - 50px);
+}

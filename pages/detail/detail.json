@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "详情",
+  "usingComponents": {
+    "van-stepper": "../../dist/stepper/index",
+    "van-button": "../../dist/button/index",
+    "van-goods-action": "../../dist/goods-action/index",
+    "van-goods-action-icon": "../../dist/goods-action-icon/index",
+    "van-goods-action-button": "../../dist/goods-action-button/index"
+  }
 }
