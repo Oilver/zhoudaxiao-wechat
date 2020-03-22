@@ -1,9 +1,92 @@
 <!--pages/detail/detail.wxml-->
-<text>{{productDetail.name}}</text>
+<view class="detail-page">
+  <view class="scroll-page">
+    <scroll-view class="detail-scroll" scroll-y="true">
+      <!--所有图片-->
+      <view class="product-swiper">
+        <swiper 
+          indicator-dots="true"
+          autoplay="true"
+          interval="2000" 
+          duration="1000">
+          <block wx:for="{{productDetail.imageEntityList}}" wx:key="item">
+          <swiper-item>
+            <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
+          </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="info">
+        <view class="tittle">商品名称</view>
+        <view class="price">￥商品价格</view>
+        <view class="detail">
+          <view class="saleNum">销量：23</view>
+          <view class="inventory">库存：23</view>
+        </view>
+      </view>
 
-<image src="{{productDetail.avatarUrl}}"></image>
+      <view class="selected-product" bindtap="showModal">已选择：XXXX商品
+      </view>
 
-<!--所有图片-->
-<block wx:for="{{productDetail.imageEntityList}}" wx:key>
-    <image src="{{item.url}}"></image>
-</block>
+      <view class="product-detail-image">
+        <text class="text-desc">图文详情</text>
+        <block wx:for="{{productDetail.imageEntityList}}" wx:key="item">
+            <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
+          </block>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="detail-bottom">
+    <van-goods-action>
+      <van-goods-action-icon
+        icon="chat-o"
+        text="客服"
+        bind:click="onClickIcon"
+      />
+      <van-goods-action-icon
+        icon="cart-o"
+        text="购物车"
+        bind:click="onClickIcon"
+      />
+      <van-goods-action-button
+        text="加入购物车"
+        type="warning"
+        bind:click="onClickButton"
+      />
+    </van-goods-action>
+  </view>
+</view>
+ 
+<!--屏幕背景变暗的背景  -->
+  <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+  <!--弹出框  -->
+  <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+     <view class="row">
+        <image class="image-sku" src="https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"></image>
+        <view class="column">
+          <text class="sku-price">￥500</text>
+          <text class="sku-title">库存20件</text>
+           <text class="sku-title">已选： 类型一</text>
+        </view>
+      </view>
+      <text class="border-line"></text>
+      <view class="product-select">
+        <view class="select-tittle">
+         分类
+        </view>
+        <view class="select-set">
+          <view class="select-item" wx:for="{{5}}" wx:key="*this" wx:for-index="index" catchtap="setSelectItem" data-name="商品类型名称{{index}}">
+            商品类型名称{{index}}
+          </view>
+        </view>
+      </view>
+      <view class="row counter">
+        <text >购买数量</text>
+        <view class="quantity-position">
+          <van-stepper value="{{ 1 }}" bind:change="onChange" />
+        </view>
+      </view>
+      <view class="add-button">
+        <van-button type="danger"> 确定加入 </van-button>
+      </view>
+  </view>

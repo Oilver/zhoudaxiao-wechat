@@ -1,4 +1,5 @@
 //引入代码
+var app = getApp();
 var httpClient = require("../../utils/request.js")
 
 Page({
@@ -6,9 +7,10 @@ Page({
      * 页面的初始数据
      */
     data: {
-        carouselsList: [],
-        todayProductList: [],
-        hotProductList: []
+      carouselsList: [],
+      todayProductList: [],
+      hotProductList: [],
+      background: ['demo-1', 'demo-2', 'demo-3'],
     },
 
     /**
@@ -66,6 +68,7 @@ Page({
     /**
      * 跳转到今日推荐或者爆款推荐
      */
+    //todo 换成eventChannel方式传递数据
     onRecommendTap(event) {
         var topName = event.currentTarget.dataset.type;
         wx.navigateTo({
@@ -77,9 +80,11 @@ Page({
     },
 
     /**
-     * 下拉刷新
+     * 调用刷新函数
      */
+
     onPullDownRefresh: function () {
+
         // 显示顶部刷新图标
         wx.showNavigationBarLoading();
 
@@ -93,5 +98,18 @@ Page({
         wx.hideNavigationBarLoading();
         // 停止下拉动作
         wx.stopPullDownRefresh();
-    }
+    },
+
+    onSearch: function() {
+      wx.navigateTo({
+        url: "../search/search"
+      })
+    },
+
+  onClickTabs: function(event) {
+    console.log(event.detail);
+    console.log(event.detail.index);
+  }
+
+
 })

@@ -1,17 +1,16 @@
 // pages/search/search.js
 var app = getApp();
 var httpClient = require("../../utils/request.js")
-var log = require('../../utils/log.js')
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    inputVal: '',
-    searchName: '',
-    SearchProductList: ''
+    inputVal:'',
+    searchName:'',
+    SearchProductList:'',
+    isShowTap: true
   },
 
   showInput: function () {
@@ -33,37 +32,56 @@ Page({
     });
   },
   inputTyping: function (res) {
-    //搜索数据
-    this.setData({
+  //搜索数据
+    this.setData(
+        {
       inputVal: res.detail.value
     });
   },
   //获取输入的值，对比是否字符串，是直接请求数据，不是就返回查询不到内容
-  onSearch() {
+  onSearch(){
     this.data.searchName = this.data.inputVal
-    if (this.data.searchName != null || this.data.searchName != '') {
-      httpClient.request('product/queryProductList', {
-          orderBy: 'pageviews',
-          sortType: 'desc',
-          productName: this.data.searchName
+    console.log(this.data.searchName)
+        if(this.data.searchName!=null||this.data.searchName!=''){
+          httpClient.request('product/queryProductList',
+              {orderBy: 'pageviews',
+                sortType: 'desc',
+                productName: this.data.searchName},
+              this.searchProductListSuccess, this.searchProductListFail);
+        }
+        else {
+          wx.showToast({
+            title: '查询不到结果！',
+            icon: 'loading',
+            duration: 1500
+          })
+        }
         },
-        this.searchProductListSuccess, this.searchProductListFail);
-    } else {
-      wx.showToast({
-        title: '查询不到结果！',
-        icon: 'loading',
-        duration: 1500
-      })
-    }
-  },
   searchProductListSuccess(result) {
     this.setData({
       SearchProductList: result.data.list
     })
-    log.info('搜索结果集' + this.data.SearchProductList)
     console.log(this.data.SearchProductList)
   },
   searchProductListFail() {
     console.log("失败")
+  },
+  setSearchItem(e) {
+    var value = e.currentTarget.dataset.name;
+    this.setData({
+      inputVal: value,
+      isShowTap: false
+    });
+  },
+  onChange(e) {
+    this.setData({
+      inputVal: e.detail
+    });
+    if (e.detail == "") {
+      this.setData({
+        isShowTap: true
+      })
+    }
   }
+
 })

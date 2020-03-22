@@ -1,6 +1,0 @@
-<template name="product-template">
-  <view>
-    <image src="{{avatarUrl}}"></image>
-    <text>{{name}}</text>
-  </view>
-</template>

@@ -78,3 +78,20 @@
  font-size: 30rpx;
 }
 
+
+.search-tittle {
+  margin: 20px 5px 10px 5px;
+  font-weight: bold;
+}
+.search-set {
+  display: flex;
+  flex-wrap: wrap;
+}
+.search-item {
+  border-radius: 15px;
+  border: 1px solid #9B9B9B;
+  margin: 5px;
+  padding: 0px 5px;
+  word-break: none;
+  font-size: 12px;
+}

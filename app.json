@@ -1,11 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/shopmall/shopmall",
     "pages/shopcart/shopcart",
     "pages/about/about",
     "pages/detail/detail",
-    "pages/recommend/recommend",
     "pages/search/search"
   ],
   "window": {
@@ -23,12 +21,6 @@
         "iconPath": "image/icon-tabbar/index.png",
         "text": "首页",
         "selectedIconPath": "image/icon-tabbar/Sindex.png"
-      },
-      {
-        "pagePath": "pages/shopmall/shopmall",
-        "iconPath": "image/icon-tabbar/shop.png",
-        "text": "商城",
-        "selectedIconPath": "image/icon-tabbar/Sshop.png"
       },
       {
         "pagePath": "pages/shopcart/shopcart",

@@ -1,46 +1,39 @@
 <!--pages/search/search.wxml-->
 
-
-<!--搜索框 -->
-<view class="weui-search-bar">
-
-
- <view class="weui-search-bar__form">
-
- <!--点击之后，出现input框 --  --其中的focus是为了获取焦点弹出键盘-->
- <view class="weui-search-bar__box">
-  <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-  <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
-
-
-  <!--输入款字数大于0，则显示清除按钮 -->
-  <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-  <icon type="clear" size="14"></icon>
+<view class = "search-page">
+  <view class="search-bar">
+    <van-search
+      value="{{ inputVal }}"
+      placeholder="请输入搜索关键词"
+      use-action-slot
+      bind:change="onChange"
+      bind:search="onSearch"
+      data-inputVal="{{ inputVal }}"
+    >
+    <view slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
   </view>
- </view>
 
- <!--没点击之前，只是一些文字和图标 -->
- <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-  <icon class="weui-icon-search" type="search" size="14"></icon>
-  <view class="weui-search-bar__text">搜索产品</view>
- </label>
-
- </view>
-
-
-
- <!--动态出现的“取消”键 -->
- <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-
-
+  <view wx:if="{{ isShowTap == true}}" class="search-tip">
+    <view class="search-history">
+      <view class="search-tittle">
+        历史记录
+      </view>
+      <view class="search-set">
+        <view class="search-item" wx:for="{{5}}" wx:key="*this" wx:for-index="index" catchtap="setSearchItem" data-name="历史{{index}}">
+          历史{{index}}
+        </view>
+      </view>
+    </view>
+    <view class="search-host">
+      <view class="search-tittle">
+          热门搜索
+        </view>
+        <view class="search-set">
+          <view class="search-item" wx:for="{{5}}" wx:key="*this" wx:for-index="index" catchtap="setSearchItem" data-name="热门{{index}}">
+            热门{{index}}
+          </view>
+        </view>
+      </view>
+  </view>
 </view>
-
-<!--点击搜索 -->
-<view catchtap="onSearch">搜索</view>
-
-<!--列表 -->
-<view class="test-text">
-<text wx:for="{{SearchProductList}}">{{item.name}}</text>
-</view>
-
-
