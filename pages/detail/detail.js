@@ -104,13 +104,32 @@ Page({
   },
 
   navToShopCart: function() {
-    console.log('111');
     wx.switchTab({
       url: '/pages/shopcart/shopcart',
     })
   },
 
+  // 加入购物车
   addToShopCart: function () {
-
+    //1. 获取缓存中的购物车数组
+    let cart = wx.getStorageSync('cart')||[];
+    //2. 判断商品对象是否存在于购物车数组中
+    let index = cart.findIndex( v=> v.goods_id === this.goods_id);
+    if (index === -1) {
+      // 不存在 第一次添加
+      this.GoodsInfo.num = 1;
+      cart.push(this.GoodsInfo);
+    } else {
+      //已存在购物车中，数字加一
+      cart[index].num ++;
+    }
+    //5. 把购物车重新添加回缓存中
+    wx.setStorageSync('cart', cart);
+    //6. 弹窗提示
+    wx.showToast({
+        title: '加入成功',
+        icon: 'success',
+        mask: true
+    })
   },
 })
