@@ -11,7 +11,7 @@
           duration="1000">
           <block wx:for="{{productDetail.imageEntityList}}" wx:key="item">
           <swiper-item>
-            <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
+            <!-- <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image> -->
           </swiper-item>
           </block>
         </swiper>
@@ -31,7 +31,7 @@
       <view class="product-detail-image">
         <text class="text-desc">图文详情</text>
         <block wx:for="{{productDetail.imageEntityList}}" wx:key="item">
-            <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
+            <!-- <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image> -->
           </block>
       </view>
     </scroll-view>
@@ -46,12 +46,12 @@
       <van-goods-action-icon
         icon="cart-o"
         text="购物车"
-        bind:click="onClickIcon"
+        bind:click="navToShopCart"
       />
       <van-goods-action-button
         text="加入购物车"
         type="warning"
-        bind:click="onClickButton"
+        bind:click="addToShopCart"
       />
     </van-goods-action>
   </view>
@@ -87,6 +87,6 @@
         </view>
       </view>
       <view class="add-button">
-        <van-button type="danger"> 确定加入 </van-button>
+        <van-button type="danger" bindtap="addToShopCart"> 确定加入 </van-button>
       </view>
   </view>

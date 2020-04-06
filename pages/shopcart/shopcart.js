@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    result: ['a']
   },
 
   /**
@@ -60,6 +60,18 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
-  }
-})
+  },
+
+  // 单选
+  onCheckBoxChange: function (event) {
+      this.setData({
+          result: event.detail
+      });
+  },
+  // 全选
+  onSelectAllChange: function (event) {
+    this.setData({
+      result: event.detail
+    });
+  },
+});

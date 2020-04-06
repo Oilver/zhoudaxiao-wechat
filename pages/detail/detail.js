@@ -101,5 +101,16 @@ Page({
         showModalStatus: false
       })
     }.bind(this), 200)
-  }
+  },
+
+  navToShopCart: function() {
+    console.log('111');
+    wx.switchTab({
+      url: '/pages/shopcart/shopcart',
+    })
+  },
+
+  addToShopCart: function () {
+
+  },
 })

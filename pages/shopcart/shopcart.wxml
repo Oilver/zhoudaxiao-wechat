@@ -1,13 +1,29 @@
 <view class="shopcart-page">
   <view class="shopcart">
-    <van-card
-      num="2"
-      price="10.00"
-      desc="描述信息"
-      title="商品标题"
-  thumb="https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"
-    >
-  </van-card>
+    <van-checkbox-group value="{{result}}" bind:change="onCheckBoxChange">
+      <van-checkbox name="a">
+        <van-card
+          num="2"
+          price="10.00"
+          desc="描述信息"
+          title="商品标题"
+      thumb="https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"
+        >
+        </van-card>
+      </van-checkbox>
+      <van-checkbox name="b">
+        <van-card
+        num="2"
+        price="10.00"
+        desc="描述信息"
+        title="商品标题"
+    thumb="https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"
+      >
+        </van-card>
+      </van-checkbox>
+      <van-checkbox name="c">复选框 c</van-checkbox>
+    </van-checkbox-group>
+    
   </view>
   <view class="submit">
     <van-submit-bar
@@ -17,7 +33,7 @@
       style="width: 184px"
     >
     <van-tag type="primary">
-      <van-checkbox value="{{ checked }}" bind:change="onChange">全选</van-checkbox>
+      <van-checkbox value="{{ checked }}" bind:change="onSelectAllChange">全选</van-checkbox>
     </van-tag>
   </van-submit-bar>
   </view>
