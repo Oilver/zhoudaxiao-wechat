@@ -10,7 +10,10 @@ Page({
       carouselsList: [],
       todayProductList: [],
       hotProductList: [],
-      background: ['demo-1', 'demo-2', 'demo-3'],
+      categoryId: 0,
+      pageIndex: 1,
+      pageSize: 6,
+      hasNextPage: true,
     },
 
     /**
@@ -21,15 +24,20 @@ Page({
         httpClient.request('image/queryCarousels', {}, this.carouselsSuccess, this.carouselsFail);
 
         //今日推荐初始化
-        httpClient.request('product/queryProductList', {isNew: true}, this.todayProductListSuccess, this.todayProductListFail);
+      httpClient.request('product/queryProductList', {
+        "categoryId": this.data.categoryId,
+        "pageNum": this.data.pageIndex,
+        "pageSize": this.data.pageSize,
+      }, this.todayProductListSuccess, this.todayProductListFail);
 
         //爆款推荐初始化
         httpClient.request('product/queryProductList', {isNew: false}, this.hotProductListSuccess, this.hotProductListFail);
     },
 
     carouselsSuccess(result) {
+        console.log(result.data);
         this.setData({
-            carouselsList: result.data
+            carouselsList: result.data,
         })
     },
     carouselsFail() {
@@ -37,8 +45,10 @@ Page({
     },
 
     todayProductListSuccess(result) {
+        console.log(result.data.list);
         this.setData({
-            todayProductList: result.data.list
+            todayProductList: result.data.list,
+            hasNextPage: result.data.hasNextPage,
         })
 
     },
@@ -47,36 +57,13 @@ Page({
     },
 
     hotProductListSuccess(result) {
+        console.log(result.data.list);
         this.setData({
             hotProductList: result.data.list
         })
     },
     hotProductListFail() {
         console.log("失败")
-    },
-
-
-    /**
-     * 跳转到详情页
-     */
-    onDetailTap(event) {
-        var id = event.currentTarget.dataset.id;
-        wx.navigateTo({
-            url: "../detail/detail?id=" + id
-        })
-    },
-    /**
-     * 跳转到今日推荐或者爆款推荐
-     */
-    //todo 换成eventChannel方式传递数据
-    onRecommendTap(event) {
-        var topName = event.currentTarget.dataset.type;
-        wx.navigateTo({
-            url: "../recommend/recommend",
-            success(res) {
-                res.eventChannel.emit('topName', topName) //todo 这里的数据可以传一个对象，如 {data: topName}
-            }
-        })
     },
 
     /**
@@ -98,6 +85,28 @@ Page({
         wx.hideNavigationBarLoading();
         // 停止下拉动作
         wx.stopPullDownRefresh();
+    },
+
+    /**
+     * 下拉加载更多
+     */
+    onReachBottom: function() {
+      console.log('触底了');
+      let {categoryId, pageIndex, pageSize} = this.data;
+      // 加载下一页的代码
+      const params = {
+        "categoryId": categoryId,
+        "pageNum": ++pageIndex,
+        "pageSize": pageSize,
+      }
+      console.log(params);
+      if(this.data.hasNextPage) {
+        httpClient.request('product/queryProductList', params, (result) => {
+          console.log(result);
+          const list = this.data.todayProductList.concat(result.data.list);
+          this.setData({ categoryId, pageIndex, pageSize, hasNextPage: result.data.hasNextPage, todayProductList: list })
+        }, this.todayProductListFail);
+      }
     },
 
     onSearch: function() {
