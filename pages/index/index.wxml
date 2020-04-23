@@ -30,7 +30,7 @@
           <block wx:for="{{todayProductList}}" wx:key="*this">
             <van-grid-item 
               link-type="navigateTo"
-              url="/pages/detail/detail?cat=推荐&id=1"
+              url="/pages/detail/detail?cat=推荐&id={{item.id}}"
               icon="{{item.avatarUrl}}" 
               text="{{item.name}}"/>
           </block>
@@ -40,7 +40,7 @@
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=护肤&id=1"
+            url="/pages/detail/detail?cat=护肤&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>
@@ -48,7 +48,7 @@
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=彩妆&id=1"
+            url="/pages/detail/detail?cat=彩妆&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>
@@ -56,7 +56,7 @@
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=保健&id=1"
+            url="/pages/detail/detail?cat=保健&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>
@@ -64,7 +64,7 @@
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=包包&id=1"
+            url="/pages/detail/detail?cat=包包&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>

@@ -5,41 +5,21 @@ Page({
 
     data: {
         productDetail: {
-          imageEntityList:[
-            {
-              bucketKey: "product/2020-01-12-23:20:12-WechatIMG17.jpeg",
-              id: 7,
-              isAvatar: true,
-              isCarousel: false,
-              priority: 1,
-              productId: 1,
-              url: "https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"},
-            {
-              bucketKey: "product/2020-01-12-23:20:12-WechatIMG17.jpeg",
-              id: 7,
-              isAvatar: true,
-              isCarousel: false,
-              priority: 1,
-              productId: 1,
-              url: "https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"},
-            {
-              bucketKey: "product/2020-01-12-23:20:12-WechatIMG17.jpeg",
-              id: 7,
-              isAvatar: true,
-              isCarousel: false,
-              priority: 1,
-              productId: 1,
-              url: "https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"
-            },
-          ]
+          imageEntityList:[],
+          category: {},
+          monthlySales: '0',
+          name: '',
+          originalPrice: 0,
+          stock: 0,
         },
-        category: {},
-    },
+
+},
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+      console.log(options);
       wx.setNavigationBarTitle({
         title: '商品详情',
       })
@@ -47,9 +27,11 @@ Page({
     },
 
     querySuccess(result) {
-        // this.setData({
-        //     productDetail: result.data
-        // })
+      this.setData({
+          productDetail: result.data
+      })
+        console.log(result);
+        console.log(result);
     },
     queryFail() {
         console.log("失败")
