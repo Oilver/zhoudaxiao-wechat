@@ -5,3 +5,7 @@
 .shopcart {
   height: calc(100vh - 50px);
 }
+
+.van-checkbox .van-checkbox__label {
+  flex: 1;
+}

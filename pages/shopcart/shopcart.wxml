@@ -1,23 +1,28 @@
 <view class="shopcart-page">
   <view class="shopcart">
-    <van-card
-      num="2"
-      price="10.00"
-      desc="描述信息"
-      title="商品标题"
-  thumb="https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"
-    >
-  </van-card>
+    <van-checkbox-group wx:if="{{shopCart.length}}" value="{{selectItem}}" bind:change="onCheckBoxChange">
+      <van-checkbox wx:for="{{shopCart}}" wx:key="item" name="{{index}}">
+        <van-card
+          num="{{item.num}}"
+          price="{{item.originalPrice}}"
+          desc="描述信息"
+          title="{{item.name}}"
+          thumb="{{item.avatarUrl}}"
+        >
+        </van-card>
+      </van-checkbox>
+    </van-checkbox-group>
+    <view wx:else>还什么都没有呢，请选择您要购买的物品！</view>
   </view>
   <view class="submit">
     <van-submit-bar
-      price="{{ 3050 }}"
+      price="{{ totalValue }}"
       button-text="提交订单"
       bind:submit="onClickButton"
       style="width: 184px"
     >
     <van-tag type="primary">
-      <van-checkbox value="{{ checked }}" bind:change="onChange">全选</van-checkbox>
+      <van-checkbox value="{{ checkAll }}" bind:change="onSelectAllChange">全选</van-checkbox>
     </van-tag>
   </van-submit-bar>
   </view>

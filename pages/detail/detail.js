@@ -5,41 +5,22 @@ Page({
 
     data: {
         productDetail: {
-          imageEntityList:[
-            {
-              bucketKey: "product/2020-01-12-23:20:12-WechatIMG17.jpeg",
-              id: 7,
-              isAvatar: true,
-              isCarousel: false,
-              priority: 1,
-              productId: 1,
-              url: "https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"},
-            {
-              bucketKey: "product/2020-01-12-23:20:12-WechatIMG17.jpeg",
-              id: 7,
-              isAvatar: true,
-              isCarousel: false,
-              priority: 1,
-              productId: 1,
-              url: "https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"},
-            {
-              bucketKey: "product/2020-01-12-23:20:12-WechatIMG17.jpeg",
-              id: 7,
-              isAvatar: true,
-              isCarousel: false,
-              priority: 1,
-              productId: 1,
-              url: "https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"
-            },
-          ]
+          imageEntityList:[],
+          category: {},
+          monthlySales: '0',
+          name: '',
+          originalPrice: 0,
+          stock: 0,
+          num: 1,
         },
-        category: {},
-    },
+
+},
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+      console.log(options);
       wx.setNavigationBarTitle({
         title: '商品详情',
       })
@@ -47,9 +28,11 @@ Page({
     },
 
     querySuccess(result) {
-        // this.setData({
-        //     productDetail: result.data
-        // })
+      this.setData({
+          productDetail: result.data
+      });
+        console.log(result);
+        console.log(result);
     },
     queryFail() {
         console.log("失败")
@@ -101,5 +84,44 @@ Page({
         showModalStatus: false
       })
     }.bind(this), 200)
+  },
+
+  navToShopCart: function() {
+    wx.switchTab({
+      url: '/pages/shopcart/shopcart',
+    })
+  },
+
+  // 加入购物车
+  addToShopCart: function () {
+    //1. 获取缓存中的购物车数组
+    let cart = wx.getStorageSync('cart')||[];
+    console.log(cart);
+    //2. 判断商品对象是否存在于购物车数组中
+    let index = cart.findIndex( v=> v.id === this.data.productDetail.id);
+    if (index === -1) {
+      // 不存在 第一次添加
+      this.data.productDetail.num = 1;
+      cart.push(this.data.productDetail);
+    } else {
+      //已存在购物车中，数字加一
+      cart[index].num += this.data.productDetail.num;
+    }
+    //5. 把购物车重新添加回缓存中
+    wx.setStorageSync('cart', cart);
+    this.hideModal();
+    //6. 弹窗提示
+    wx.showToast({
+        title: '加入成功',
+        icon: 'success',
+        mask: true
+    })
+  },
+
+  buyNumChange: function (e) {
+      this.setData({
+          'productDetail.num': e.detail
+      });
+      console.log(this.data.productDetail);
   }
-})
+});

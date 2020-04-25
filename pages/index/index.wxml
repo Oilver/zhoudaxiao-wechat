@@ -12,11 +12,13 @@
       autoplay="true"
       interval="2000" 
       duration="1000">
-        <block wx:for="{{background}}" wx:key="*this">
+        <block wx:for="{{carouselsList}}" wx:key="*this">
           <swiper-item>
             <navigator 
             url="/pages/detail/detail?cat={{item}}"
-            class="swiper-item {{item}}"></navigator>
+            class="swiper-item">
+              <image src="{{item.url}}"></image>
+            </navigator>
           </swiper-item>
         </block>
       </swiper>
@@ -25,20 +27,20 @@
     <van-tabs active="推荐"  bind:click="onClickTabs" bind:change="onChange" sticky>
       <van-tab title="推荐" name="推荐">
         <van-grid gutter="{{ 0 }}" column-num="2">
-          <van-grid-item 
-            link-type="navigateTo"
-            url="/pages/detail/detail?cat=推荐&id=1"
-            icon="photo-o" 
-            text="文字" 
-            wx:for="{{ 8 }}"
-            wx:key="*this" />
+          <block wx:for="{{todayProductList}}" wx:key="*this">
+            <van-grid-item 
+              link-type="navigateTo"
+              url="/pages/detail/detail?cat=推荐&id={{item.id}}"
+              icon="{{item.avatarUrl}}" 
+              text="{{item.name}}"/>
+          </block>
         </van-grid>
       </van-tab>
       <van-tab title="护肤" name="护肤">
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=护肤&id=1"
+            url="/pages/detail/detail?cat=护肤&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>
@@ -46,7 +48,7 @@
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=彩妆&id=1"
+            url="/pages/detail/detail?cat=彩妆&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>
@@ -54,7 +56,7 @@
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=保健&id=1"
+            url="/pages/detail/detail?cat=保健&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>
@@ -62,12 +64,15 @@
         <van-grid gutter="{{ 0 }}" column-num="2">
           <van-grid-item 
             link-type="navigateTo"
-            url="/pages/detail/detail?cat=包包&id=1"
+            url="/pages/detail/detail?cat=包包&id={{item.id}}"
             icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="*this" />
         </van-grid>
       </van-tab>
     </van-tabs>
   </view>
+
+  <view wx:if="{{hasNextPage}}" class="loadmore loading">正在加载..</view>
+  <view wx:else> 没有更多 </view>
     <!-- <view>
         <swiper indicator-dots="true" autoplay="true" indicator-active-color="red">
             <block wx:for="{{carouselsList}}" wx:key="key">

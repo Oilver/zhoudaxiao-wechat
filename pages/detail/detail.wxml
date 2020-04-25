@@ -11,27 +11,27 @@
           duration="1000">
           <block wx:for="{{productDetail.imageEntityList}}" wx:key="item">
           <swiper-item>
-            <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
+             <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
           </swiper-item>
           </block>
         </swiper>
       </view>
       <view class="info">
-        <view class="tittle">商品名称</view>
-        <view class="price">￥商品价格</view>
+        <view class="tittle">{{productDetail.name}}</view>
+        <view class="price">￥{{productDetail.originalPrice}}</view>
         <view class="detail">
-          <view class="saleNum">销量：23</view>
-          <view class="inventory">库存：23</view>
+          <view class="saleNum">销量：{{productDetail.monthlySales || 0}}</view>
+          <view class="inventory">库存：{{productDetail.stock}}</view>
         </view>
       </view>
 
-      <view class="selected-product" bindtap="showModal">已选择：XXXX商品
+      <view class="selected-product" bindtap="showModal">已选择：默认
       </view>
 
       <view class="product-detail-image">
         <text class="text-desc">图文详情</text>
         <block wx:for="{{productDetail.imageEntityList}}" wx:key="item">
-            <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
+             <image wx:if="{{item.url.length>0}}" src="{{item.url}}"></image>
           </block>
       </view>
     </scroll-view>
@@ -46,12 +46,12 @@
       <van-goods-action-icon
         icon="cart-o"
         text="购物车"
-        bind:click="onClickIcon"
+        bind:click="navToShopCart"
       />
       <van-goods-action-button
         text="加入购物车"
         type="warning"
-        bind:click="onClickButton"
+        bind:click="addToShopCart"
       />
     </van-goods-action>
   </view>
@@ -62,11 +62,11 @@
   <!--弹出框  -->
   <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
      <view class="row">
-        <image class="image-sku" src="https://yiseven-1300292849.cos.ap-guangzhou.myqcloud.com/product/2020-01-12-23:20:12-WechatIMG17.jpeg"></image>
+        <image class="image-sku" src="{{productDetail.imageEntityList[0].url}}"></image>
         <view class="column">
-          <text class="sku-price">￥500</text>
-          <text class="sku-title">库存20件</text>
-           <text class="sku-title">已选： 类型一</text>
+          <text class="sku-price">{{productDetail.originalPrice}}</text>
+          <text class="sku-title">库存{{productDetail.stock}}件</text>
+           <text class="sku-title">已选： 默认</text>
         </view>
       </view>
       <text class="border-line"></text>
@@ -75,18 +75,21 @@
          分类
         </view>
         <view class="select-set">
-          <view class="select-item" wx:for="{{5}}" wx:key="*this" wx:for-index="index" catchtap="setSelectItem" data-name="商品类型名称{{index}}">
-            商品类型名称{{index}}
-          </view>
+          <!--<view class="select-item" wx:for="{{5}}" wx:key="*this" wx:for-index="index" catchtap="setSelectItem" data-name="商品类型名称{{index}}">-->
+            <!--商品类型名称{{index}}-->
+          <!--</view>-->
+        <view class="select-item">
+            默认
+        </view>
         </view>
       </view>
       <view class="row counter">
         <text >购买数量</text>
         <view class="quantity-position">
-          <van-stepper value="{{ 1 }}" bind:change="onChange" />
+          <van-stepper value="{{ 1 }}" bind:change="buyNumChange" />
         </view>
       </view>
       <view class="add-button">
-        <van-button type="danger"> 确定加入 </van-button>
+        <van-button type="danger" bindtap="addToShopCart"> 确定加入 </van-button>
       </view>
   </view>

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "首页",
   "enablePullDownRefresh": true,
+  "onReachBottomDistance": 30,
   "usingComponents": {
     "van-search": "../../dist/search/index",
     "van-tab": "../../dist/tab/index",
