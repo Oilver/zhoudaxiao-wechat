@@ -86,7 +86,7 @@
       <view class="row counter">
         <text >购买数量</text>
         <view class="quantity-position">
-          <van-stepper value="{{ 1 }}" bind:change="onChange" />
+          <van-stepper value="{{ 1 }}" bind:change="buyNumChange" />
         </view>
       </view>
       <view class="add-button">
