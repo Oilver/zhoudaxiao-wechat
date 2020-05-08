@@ -26,4 +26,29 @@
     </van-tag>
   </van-submit-bar>
   </view>
+
+  <view class="commodity_screen" bindtap="hideList" wx:if="{{showList}}"></view>
+  <!--弹出框  -->
+  <view class="commodity_attr_box" wx:if="{{showList}}">
+    <view class="list-tittle"> 购物清单 </view>
+    <view class="table">
+      <view class="table-tr">
+        <view class="table-th">产品名称</view>
+        <view class="table-th">产品ID</view>
+        <view class="table-th">产品价格</view>
+        <view class="table-th">产品数量</view>
+        <view class="table-th">产品总价</view>
+      </view>
+      <view wx:for="{{selectItem}}" wx:key="item" class="table-tr">
+        <view class="table-td">{{shopCart[item].name}}</view>
+        <view class="table-td">{{shopCart[item].id}}</view>
+        <view class="table-td">{{shopCart[item].originalPrice}}</view>
+        <view class="table-td">{{shopCart[item].num}}</view>
+        <view class="table-td">{{shopCart[item].originalPrice * shopCart[item].num}}</view>
+      </view>
+    </view>
+    <view class="total-price">
+      合计: {{totalValue / 100}}
+    </view>
+  </view>
 </view>
