@@ -53,6 +53,8 @@
   padding: 0px 5%;
   border-collapse: collapse;
   box-sizing: border-box;
+  height: 200rpx;
+  overflow: hidden;
 }
 
 .table-tr {
