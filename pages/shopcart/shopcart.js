@@ -7,7 +7,8 @@ Page({
         shopCart: [],
         selectItem: [],
         checkAll: false,
-        totalValue: 0
+        totalValue: 0,
+        showList: false,
     },
 
     /**
@@ -114,6 +115,26 @@ Page({
         console.log(price);
         this.setData({
             totalValue: price * 100
+        })
+    },
+
+    onClickButton: function () {
+        if (this.data.selectItem.length == 0) {
+            wx.showToast({
+                title: '请选择要购物的物品',
+                icon: 'none',
+                duration: 2000
+            });
+        } else {
+            this.setData({
+                showList: true
+            })
+        }
+    },
+
+    hideList: function () {
+        this.setData({
+            showList: false
         })
     }
 });
