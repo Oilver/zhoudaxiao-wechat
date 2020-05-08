@@ -74,9 +74,21 @@ Page({
 
         // 显示顶部刷新图标
         wx.showNavigationBarLoading();
+        this.setData({
+            todayProductList: [],
+            hotProductList: [],
+            categoryId: 0,
+            pageIndex: 1,
+            pageSize: 6,
+            hasNextPage: true,
+        });
 
         //今日推荐重新加载
-        httpClient.request('product/queryProductList', {isNew: true}, this.todayProductListSuccess, this.todayProductListFail);
+        httpClient.request('product/queryProductList', {
+            "categoryId": this.data.categoryId,
+            "pageNum": this.data.pageIndex,
+            "pageSize": this.data.pageSize,
+        }, this.todayProductListSuccess, this.todayProductListFail);
 
         //爆款推荐重新加载
         httpClient.request('product/queryProductList', {isNew: false}, this.hotProductListSuccess, this.hotProductListFail);
