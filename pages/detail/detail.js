@@ -55,7 +55,8 @@ Page({
     animation.translateY(300).step()
     this.setData({
       animationData: animation.export(),
-      showModalStatus: true
+      showModalStatus: true,
+      'productDetail.num': 1
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -87,7 +88,7 @@ Page({
   },
 
   navToShopCart: function() {
-    wx.switchTab({
+    wx.reLaunch({
       url: '/pages/shopcart/shopcart',
     })
   },
@@ -105,7 +106,7 @@ Page({
       cart.push(this.data.productDetail);
     } else {
       //已存在购物车中，数字加一
-      cart[index].num += this.data.productDetail.num;
+      cart[index].num += this.data.productDetail.num || 1;
     }
     //5. 把购物车重新添加回缓存中
     wx.setStorageSync('cart', cart);
