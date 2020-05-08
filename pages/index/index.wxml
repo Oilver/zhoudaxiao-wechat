@@ -1,96 +1,57 @@
-<view class = "home-page">
-  <view class="search-bar">
-    <van-search
-      value="{{ value }}"
-      placeholder="请输入搜索关键词"
-      catchtap="onSearch"
-    />
-  </view>
-  <view class="product-swiper">
-    <swiper 
-      indicator-dots="true"
-      autoplay="true"
-      interval="2000" 
-      duration="1000">
-        <block wx:for="{{carouselsList}}" wx:key="*this">
-          <swiper-item>
-            <navigator 
+<view class="home-page">
+	<view class="search-bar">
+		<van-search value="{{ value }}" placeholder="请输入搜索关键词" catchtap="onSearch" />
+	</view>
+	<view class="product-swiper">
+		<swiper indicator-dots="true" autoplay="true" interval="3500" duration="1500">
+			<block wx:for="{{carouselsList}}" wx:key="*this">
+				<swiper-item>
+					<!-- <navigator 
             url="/pages/detail/detail?cat={{item}}"
             class="swiper-item">
               <image src="{{item.url}}"></image>
-            </navigator>
-          </swiper-item>
-        </block>
-      </swiper>
-  </view>
-  <view class="nav-bar">
-    <van-tabs active="推荐"  bind:click="onClickTabs" bind:change="onChange" sticky>
-      <van-tab title="推荐" name="推荐">
-        <view class="product-list">
-          <block wx:for="{{todayProductList}}" wx:key="*this">
-            <navigator url="/pages/detail/detail?cat=推荐&id={{item.id}}" class="product-item">
-              <image style="width: 50%" src="{{item.avatarUrl}}" mode="widthFix"></image>
-              <view class="product-desc">{{item.name}}</view>
-            </navigator>
-          </block>
-        </view>
-      </van-tab>
-      <van-tab title="护肤" name="护肤">
-        <view class="product-list">
-          <block wx:for="{{todayProductList}}" wx:key="*this">
-            <navigator url="/pages/detail/detail?cat=推荐&id={{item.id}}" class="product-item">
-              <image style="width: 50%" src="{{item.avatarUrl}}" mode="widthFix"></image>
-              <view class="product-desc">{{item.name}}</view>
-            </navigator>
-          </block>
-        </view>
-      </van-tab>
-      <van-tab title="彩妆" name="彩妆">
-        <view class="product-list">
-          <block wx:for="{{todayProductList}}" wx:key="*this">
-            <navigator url="/pages/detail/detail?cat=推荐&id={{item.id}}" class="product-item">
-              <image style="width: 50%" src="{{item.avatarUrl}}" mode="widthFix"></image>
-              <view class="product-desc">{{item.name}}</view>
-            </navigator>
-          </block>
-        </view>
-      </van-tab>
-      <van-tab title="保健" name="保健">
-        <view class="product-list">
-          <block wx:for="{{todayProductList}}" wx:key="*this">
-            <navigator url="/pages/detail/detail?cat=推荐&id={{item.id}}" class="product-item">
-              <image style="width: 50%" src="{{item.avatarUrl}}" mode="widthFix"></image>
-              <view class="product-desc">{{item.name}}</view>
-            </navigator>
-          </block>
-        </view>
-      </van-tab>
-      <van-tab title="包包" name="包包">
-        <view class="product-list">
-          <block wx:for="{{todayProductList}}" wx:key="*this">
-            <navigator url="/pages/detail/detail?cat=推荐&id={{item.id}}" class="product-item">
-              <image style="width: 50%" src="{{item.avatarUrl}}" mode="widthFix"></image>
-              <view class="product-desc">{{item.name}}</view>
-            </navigator>
-          </block>
-        </view>
-      </van-tab>
-    </van-tabs>
-  </view>
+            </navigator> -->
+					<!-- todo2 之后再附上商品detail链接 -->
+					<view class="swiper-item">
+						<image src="{{item.url}}"></image>
+					</view>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	
+	<view class="nav-bar">
+		<van-tabs active="{{tabsActive}}" bind:click="onClickTabs" sticky>
+			<van-tab title="推荐" name="recommend">
+				<view class="product-list">
+					<block wx:for="{{todayProductList}}" wx:key="*this">
+						<navigator url="/pages/detail/detail?cat=推荐&id={{item.id}}" class="product-item">
+							<image style="width: 50%" src="{{item.avatarUrl}}" mode="widthFix"></image>
+							<view class="product-desc">{{item.name}}</view>
+						</navigator>
+					</block>
+				</view>
+			</van-tab>
 
-  <view wx:if="{{hasNextPage}}" class="loadmore loading" style="margin-left: 40%">正在加载..</view>
-  <view wx:else style="margin-left: 40%"> 没有更多 </view>
-    <!-- <view>
-        <swiper indicator-dots="true" autoplay="true" indicator-active-color="red">
-            <block wx:for="{{carouselsList}}" wx:key="key">
-                <swiper-item>
-                    <image src="{{item.url}}"></image>
-                </swiper-item>
-            </block>
-        </swiper>
-    </view> -->
+			<block wx:for="{{categoryList}}" wx:key="*this">
+				<van-tab title="{{item.name}}" name="{{item.id}}">
+				<view class="product-list">
+					<block wx:for="{{todayProductList}}" wx:key="*this">
+						<navigator url="/pages/detail/detail?cat=推荐&id={{item.id}}" class="product-item">
+							<image style="width: 50%" src="{{item.avatarUrl}}" mode="widthFix"></image>
+							<view class="product-desc">{{item.name}}</view>
+						</navigator>
+					</block>
+				</view>
+			</van-tab>
+			</block>
+		</van-tabs>
+	</view>
 
-    <!-- <view class="index-boutique">
+	<view wx:if="{{hasNextPage}}" class="loadmore loading" style="margin-left: 40%">正在加载..</view>
+	<view wx:else style="margin-left: 40%"> 没有更多 </view>
+
+	<!-- <view class="index-boutique">
         <view>
             <text class="boutique1-font">今日推荐</text>
             <text catchtap="onRecommendTap" data-type="today">更多</text>
@@ -102,15 +63,5 @@
         </block>
 
     </view>
-    <view class="index-boutique">
-        <view>
-            <text class="boutique1-font">爆款推荐</text>
-            <text catchtap="onRecommendTap" data-type="hot">更多</text>
-        </view>
-        <block wx:for="{{hotProductList}}" wx:key="key">
-            <view catchtap="onDetailTap" data-id="{{item.id}}">
-                <template is="product-template" data="{{...item}}"/>
-            </view>
-        </block>
-    </view> -->
+ -->
 </view>
