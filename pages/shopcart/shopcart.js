@@ -16,7 +16,6 @@ Page({
      */
     onLoad: function (options) {
         let cart = wx.getStorageSync('cart') || [];
-        console.log(cart);
         this.setData({
             shopCart: cart,
         });
@@ -33,7 +32,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let cart = wx.getStorageSync('cart') || [];
+        this.setData({
+            shopCart: cart,
+        });
     },
 
     /**
